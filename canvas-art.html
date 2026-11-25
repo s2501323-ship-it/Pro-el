@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Task 7.1 - HTML5 Canvas Graphical Art</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f4f6f9;
+      color: #1e293b;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.55rem;
+    }
+    p.subtitle {
+      margin: 0 0 28px;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    canvas {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      background-color: #fffdf9;
+      display: block;
+    }
+    .label {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+  <h1>Learning Task 7.1: 8 HTML5 Canvas Arts</h1>
+  <p class="subtitle">Each canvas is drawn at 200&times;200 using HTML5 Canvas 2D drawing properties.</p>
+
+  <div class="grid">
+    <div class="card">
+      <canvas id="art1" width="200" height="200"></canvas>
+      <div class="label">1. Strawberry Crepe</div>
+    </div>
+    <div class="card">
+      <canvas id="art2" width="200" height="200"></canvas>
+      <div class="label">2. Crispy Taco</div>
+    </div>
+    <div class="card">
+      <canvas id="art3" width="200" height="200"></canvas>
+      <div class="label">3. Boba Tea</div>
+    </div>
+    <div class="card">
+      <canvas id="art4" width="200" height="200"></canvas>
+      <div class="label">4. Watermelon Slice</div>
+    </div>
+    <div class="card">
+      <canvas id="art5" width="200" height="200"></canvas>
+      <div class="label">5. Chocolate Croissant</div>
+    </div>
+    <div class="card">
+      <canvas id="art6" width="200" height="200"></canvas>
+      <div class="label">6. Ramen Bowl</div>
+    </div>
+    <div class="card">
+      <canvas id="art7" width="200" height="200"></canvas>
+      <div class="label">7. Berry Pie Slice</div>
+    </div>
+    <div class="card">
+      <canvas id="art8" width="200" height="200"></canvas>
+      <div class="label">8. Iced Matcha Latte</div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Strawberry Crepe
+    (function () {
+      const ctx = document.getElementById("art1").getContext("2d");
+      ctx.fillStyle = "#fef3c7";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Crepe cone triangle
+      ctx.beginPath();
+      ctx.moveTo(42, 65);
+      ctx.lineTo(158, 65);
+      ctx.lineTo(100, 174);
+      ctx.closePath();
+      ctx.fillStyle = "#f59e0b";
+      ctx.fill();
+
+      // Cream swirl rim
+      ctx.beginPath();
+      ctx.ellipse(100, 65, 58, 18, 0, 0, Math.PI * 2);
+      ctx.fillStyle = "#fffbeb";
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#fde68a";
+      ctx.stroke();
+
+      // Strawberry berry
+      ctx.beginPath();
+      ctx.arc(100, 56, 16, 0, Math.PI * 2);
+      ctx.fillStyle = "#ef4444";
+      ctx.fill();
+
+      // Leaf crown
+      ctx.fillStyle = "#16a34a";
+      ctx.beginPath();
+      ctx.ellipse(93, 41, 7, 3.5, -0.4, 0, Math.PI * 2);
+      ctx.ellipse(107, 41, 7, 3.5, 0.4, 0, Math.PI * 2);
+      ctx.fill();
+    })();
+
+    // 2. Crispy Taco
+    (function () {
+      const ctx = document.getElementById("art2").getContext("2d");
+      ctx.fillStyle = "#fff7ed";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Lettuce ruffles
+      ctx.fillStyle = "#22c55e";
+      for (let x = 42; x <= 158; x += 22) {
+        ctx.beginPath();
+        ctx.arc(x, 82, 16, Math.PI, 0);
+        ctx.fill();
+      }
+
+      // Salsa/tomato dots
+      ctx.fillStyle = "#dc2626";
+      [[65, 78], [100, 72], [135, 78]].forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Taco shell arc
+      ctx.beginPath();
+      ctx.arc(100, 138, 68, Math.PI, 0, false);
+      ctx.closePath();
+      ctx.fillStyle = "#fbbf24";
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#d97706";
+      ctx.stroke();
+
+      // Cheese shreds
+      ctx.strokeStyle = "#f97316";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(58, 92);
+      ctx.lineTo(74, 84);
+      ctx.moveTo(114, 82);
+      ctx.lineTo(136, 90);
+      ctx.stroke();
+    })();
+
+    // 3. Boba Tea
+    (function () {
+      const ctx = document.getElementById("art3").getContext("2d");
+      ctx.fillStyle = "#f0fdfa";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Straw
+      ctx.save();
+      ctx.translate(118, 85);
+      ctx.rotate(0.28);
+      ctx.fillStyle = "#fb7185";
+      ctx.fillRect(-7, -65, 14, 95);
+      ctx.restore();
+
+      // Cup body
+      ctx.beginPath();
+      ctx.moveTo(54, 62);
+      ctx.lineTo(146, 62);
+      ctx.lineTo(134, 168);
+      ctx.lineTo(66, 168);
+      ctx.closePath();
+      ctx.fillStyle = "#fde68a";
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#0f766e";
+      ctx.stroke();
+
+      // Lid band
+      ctx.fillStyle = "#14b8a6";
+      ctx.fillRect(48, 52, 104, 12);
+
+      // Boba pearls
+      ctx.fillStyle = "#1e293b";
+      [[78, 152], [96, 156], [114, 152], [87, 140], [106, 141]].forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, 7, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    })();
+
+    // 4. Watermelon Slice
+    (function () {
+      const ctx = document.getElementById("art4").getContext("2d");
+      ctx.fillStyle = "#fff1f2";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Green rind
+      ctx.beginPath();
+      ctx.arc(100, 145, 86, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.lineWidth = 14;
+      ctx.strokeStyle = "#15803d";
+      ctx.stroke();
+
+      // White pith
+      ctx.beginPath();
+      ctx.arc(100, 145, 76, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.lineWidth = 7;
+      ctx.strokeStyle = "#f0fdf4";
+      ctx.stroke();
+
+      // Red flesh wedge
+      ctx.beginPath();
+      ctx.moveTo(100, 145);
+      ctx.arc(100, 145, 72, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.closePath();
+      ctx.fillStyle = "#f43f5e";
+      ctx.fill();
+
+      // Seeds
+      ctx.fillStyle = "#1e293b";
+      [[82, 114], [100, 102], [118, 114], [92, 126], [108, 126]].forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.ellipse(x, y, 3.5, 5.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    })();
+
+    // 5. Chocolate Croissant
+    (function () {
+      const ctx = document.getElementById("art5").getContext("2d");
+      ctx.fillStyle = "#fefce8";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Pastry body
+      ctx.beginPath();
+      ctx.ellipse(100, 112, 64, 34, 0, 0, Math.PI * 2);
+      ctx.fillStyle = "#eab308";
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#a16207";
+      ctx.stroke();
+
+      // Crescent folds
+      ctx.strokeStyle = "#ca8a04";
+      ctx.lineWidth = 3;
+      [-28, -10, 10, 28].forEach((dx) => {
+        ctx.beginPath();
+        ctx.arc(100 + dx, 112, 24, -0.8, 0.8);
+        ctx.stroke();
+      });
+
+      // Chocolate drizzle
+      ctx.strokeStyle = "#451a03";
+      ctx.lineWidth = 5;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(52, 98);
+      ctx.quadraticCurveTo(75, 118, 100, 96);
+      ctx.quadraticCurveTo(125, 118, 148, 98);
+      ctx.stroke();
+    })();
+
+    // 6. Ramen Bowl
+    (function () {
+      const ctx = document.getElementById("art6").getContext("2d");
+      ctx.fillStyle = "#fffbeb";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Broth top
+      ctx.beginPath();
+      ctx.ellipse(100, 102, 68, 22, 0, 0, Math.PI * 2);
+      ctx.fillStyle = "#f59e0b";
+      ctx.fill();
+
+      // Noodles
+      ctx.strokeStyle = "#fef08a";
+      ctx.lineWidth = 4;
+      for (let i = 0; i < 4; i++) {
+        ctx.beginPath();
+        ctx.moveTo(54, 94 + i * 5);
+        ctx.bezierCurveTo(78, 86 + i * 5, 122, 104 + i * 5, 146, 94 + i * 5);
+        ctx.stroke();
+      }
+
+      // Egg half
+      ctx.beginPath();
+      ctx.ellipse(126, 98, 14, 10, -0.2, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(126, 98, 5.5, 0, Math.PI * 2);
+      ctx.fillStyle = "#ea580c";
+      ctx.fill();
+
+      // Ceramic bowl bottom
+      ctx.beginPath();
+      ctx.arc(100, 102, 68, 0, Math.PI);
+      ctx.closePath();
+      ctx.fillStyle = "#dc2626";
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#991b1b";
+      ctx.stroke();
+    })();
+
+    // 7. Berry Pie Slice
+    (function () {
+      const ctx = document.getElementById("art7").getContext("2d");
+      ctx.fillStyle = "#fdf2f8";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Crust base
+      ctx.beginPath();
+      ctx.moveTo(34, 152);
+      ctx.lineTo(166, 152);
+      ctx.lineTo(100, 44);
+      ctx.closePath();
+      ctx.fillStyle = "#d97706";
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#92400e";
+      ctx.stroke();
+
+      // Berry filling inner triangle
+      ctx.beginPath();
+      ctx.moveTo(54, 142);
+      ctx.lineTo(146, 142);
+      ctx.lineTo(100, 66);
+      ctx.closePath();
+      ctx.fillStyle = "#be185d";
+      ctx.fill();
+
+      // Berry accents
+      ctx.fillStyle = "#f472b6";
+      [[86, 124], [114, 124], [100, 102]].forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, 7, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    })();
+
+    // 8. Iced Matcha Latte
+    (function () {
+      const ctx = document.getElementById("art8").getContext("2d");
+      ctx.fillStyle = "#f0fdf4";
+      ctx.fillRect(0, 0, 200, 200);
+
+      // Milk lower layer
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(62, 115, 76, 52);
+
+      // Matcha upper layer
+      ctx.fillStyle = "#22c55e";
+      ctx.fillRect(62, 58, 76, 57);
+
+      // Glass outline
+      ctx.strokeStyle = "#166534";
+      ctx.lineWidth = 3.5;
+      ctx.strokeRect(62, 58, 76, 109);
+
+      // Ice cubes
+      ctx.fillStyle = "rgba(255, 255, 255, 0.72)";
+      ctx.fillRect(72, 68, 22, 22);
+      ctx.fillRect(104, 76, 22, 22);
+    })();
+  </script>
+</body>
+</html>

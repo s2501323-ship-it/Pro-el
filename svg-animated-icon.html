@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Task 6.2 - SVG Animated Icon</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4f6f9;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      padding: 24px;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+    }
+    p {
+      margin: 0 0 18px;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .icon-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+    svg {
+      display: block;
+      width: 300px;
+      height: 300px;
+    }
+
+    /* CSS Animations for SVG elements */
+    .orbit-outer {
+      transform-origin: 150px 150px;
+      animation: spinClockwise 12s linear infinite;
+    }
+    .orbit-inner {
+      transform-origin: 150px 150px;
+      animation: spinCounter 7s linear infinite;
+    }
+    .pulse-ring {
+      transform-origin: 150px 150px;
+      animation: pulseExpand 2.6s ease-out infinite;
+    }
+    .core-gem {
+      transform-origin: 150px 150px;
+      animation: coreFloat 2.4s ease-in-out infinite;
+    }
+
+    @keyframes spinClockwise {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinCounter {
+      from {
+        transform: rotate(360deg);
+      }
+      to {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes pulseExpand {
+      0% {
+        transform: scale(0.75);
+        opacity: 0.85;
+      }
+      100% {
+        transform: scale(1.45);
+        opacity: 0;
+      }
+    }
+
+    @keyframes coreFloat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Learning Task 6.2: SVG Animated Icon</h1>
+  <p>300&times;300 animated orbital beacon icon</p>
+
+  <div class="icon-card">
+    <svg id="animated-icon" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0f172a" />
+          <stop offset="100%" stop-color="#1e293b" />
+        </linearGradient>
+        <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#14b8a6" />
+          <stop offset="100%" stop-color="#f59e0b" />
+        </linearGradient>
+      </defs>
+
+      <!-- Rounded 300x300 background -->
+      <rect x="0" y="0" width="300" height="300" rx="28" fill="url(#bgGrad)" />
+
+      <!-- Expanding pulse wave -->
+      <circle class="pulse-ring" cx="150" cy="150" r="54" fill="none" stroke="#14b8a6" stroke-width="2.5" />
+
+      <!-- Outer rotating dashed orbit + satellite -->
+      <g class="orbit-outer">
+        <circle cx="150" cy="150" r="102" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="8 6" />
+        <circle cx="150" cy="48" r="9" fill="#f59e0b" />
+        <circle cx="150" cy="252" r="6" fill="#14b8a6" />
+      </g>
+
+      <!-- Inner counter-rotating ring + nodes -->
+      <g class="orbit-inner">
+        <circle cx="150" cy="150" r="74" fill="none" stroke="url(#accentGrad)" stroke-width="2.5" stroke-dasharray="28 14" />
+        <circle cx="224" cy="150" r="7" fill="#38bdf8" />
+        <circle cx="76" cy="150" r="7" fill="#fb7185" />
+      </g>
+
+      <!-- Center animated diamond core -->
+      <g class="core-gem">
+        <polygon points="150,112 184,150 150,188 116,150" fill="url(#accentGrad)" />
+        <circle cx="150" cy="150" r="14" fill="#0f172a" />
+        <circle cx="150" cy="150" r="6" fill="#fef08a">
+          <animate attributeName="r" values="5;8;5" dur="1.8s" repeatCount="indefinite" />
+        </circle>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>
